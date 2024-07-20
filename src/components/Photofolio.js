@@ -3,6 +3,7 @@ import {useState} from "react"
 import AlbumList from "./AlbumList";
 import Navbar from "./Navbar";
 import EmptyBox from "./EmptyBox";
+import AddAlbumForm from "./AddAlbumForm";
 
 
 export default function Photofolio() {
@@ -12,8 +13,10 @@ export default function Photofolio() {
     return (
         <>
             <Navbar />
+
             <div className="photo_main_content_div">
                 <div className="album_details">
+                    <AddAlbumForm setalbumList={setalbumList}/> 
                     <div className="flex flex_space_between album_imgae_pad album_head">
                         <h2 className="album_title">Your albums</h2>
 

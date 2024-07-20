@@ -1,6 +1,6 @@
 /* Navbar Styles */
 .navbar {
-    padding: 15px 25px;
+    padding: 0.9375rem 1.5625rem;
     background-color: var(--navbarBgColor);
 }
 
@@ -25,13 +25,13 @@
 }
 
 .album_imgae_pad {
-    margin: 0.5rem 0;
+    margin: 1rem 0;
 }
 
 /* Album Box Styles */
 .album_box {
-    border: 5px solid var(--album-box-color);
-    border-radius: 10px 10px 0 0 ;
+    border: 0.3125rem solid var(--album-box-color);
+    border-radius: 0.625rem 0.625rem 0 0 ;
     max-width: 200px;
     width: 100%;
     margin: 1rem;
@@ -58,12 +58,35 @@
     color: var(--album-img-color);
 }
 
-/* Empty Component Style */
+/* Empty Component Styles */
 .error_display {
     text-align: center;
     font-size: 1.5rem;
     color: var(--error-para-text);
     margin: 3rem 0;
     padding: 3rem;
-    border: 1px solid #333;
+    border: 0.0625rem solid #333;
+}
+
+/* Add Album Styles */
+.create_ablum_container {
+    background-color: var(--form-bg);
+    padding: 2rem 1rem;
+    margin: 1rem 0 1.5rem;
+    border-radius: 1.5625rem;
+}
+
+.clear_absolute_btn {
+    position: absolute;
+    right: 0.625rem;
+    top: 1.375rem;
+    max-width: 150px;
+    width: 100%;
+}
+
+.create_btn {
+    margin: auto;
+    text-align: center;
+    font-size: 1.3rem;
+    padding: 1.2rem 5rem;
 }
