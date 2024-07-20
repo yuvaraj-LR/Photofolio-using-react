@@ -1,17 +1,25 @@
 import {useRef, useEffect} from "react";
+import { toast } from "react-toastify";
 
 export default function AddAlbumForm(props) {
 
-    const {setalbumList} = props;
+    const {dispatch} = props;
 
     const albumNameInput = useRef(null);
 
     function handleSubmit(e) {
         e.preventDefault();
+
+        if(albumNameInput.current.value != "") {
+            toast("Album Added Successfully.")
+            dispatch({type: "ADD", albumName: {name: albumNameInput.current.value}})
+        }
+        albumNameInput.current.value = "";
+        albumNameInput.current.focus();
     }
 
     function handleClear() {
-        albumNameInput.current.value = ""
+        albumNameInput.current.value = "";
     }
 
     useEffect(() => {

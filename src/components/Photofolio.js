@@ -1,5 +1,8 @@
 import {useReducer, useState} from "react"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import AlbumList from "./AlbumList";
 import Navbar from "./Navbar";
 import EmptyBox from "./EmptyBox";
@@ -8,25 +11,28 @@ import AddAlbumForm from "./AddAlbumForm";
 function photofolioReducer(state, action) {
     switch (action.type) {
         case "ADD":
+            return [action.albumName, ...state];
 
+        default:
+            return state;
     }
 }
 
 export default function Photofolio() {
     
-    const [albumList, setalbumList] = useReducer(photofolioReducer, []);
+    const [albumList, dispatch] = useReducer(photofolioReducer, []);
+
     const [addAlbumStatus, setAddAlbumStatus] = useState(false)
-    
-    console.log(albumList.length, "listtt...");
 
     return (
         <>
             <Navbar />
 
+            <ToastContainer limit={3} theme="dark" />
             <div className="photo_main_content_div">
                 <div className="album_details">
 
-                    {addAlbumStatus ? <AddAlbumForm setalbumList={setalbumList}/> : <></>}
+                    {addAlbumStatus ? <AddAlbumForm dispatch={dispatch} /> : <></>}
 
                     <div className="flex flex_space_between album_imgae_pad album_head">
                         <h2 className="album_title">Your albums</h2>

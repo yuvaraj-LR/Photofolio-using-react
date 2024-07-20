@@ -40,6 +40,7 @@
 .album_box:hover {
     color: blue;
     border-color: blue;
+    cursor: pointer;
 }
 
 .album_image_bg {
