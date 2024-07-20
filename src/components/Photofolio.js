@@ -9,6 +9,8 @@ import AddAlbumForm from "./AddAlbumForm";
 export default function Photofolio() {
     
     const [albumList, setalbumList] = useState([]);
+    const [addAlbumStatus, setAddAlbumStatus] = useState(false)
+    
 
     return (
         <>
@@ -16,11 +18,14 @@ export default function Photofolio() {
 
             <div className="photo_main_content_div">
                 <div className="album_details">
-                    <AddAlbumForm setalbumList={setalbumList}/> 
+
+                    {addAlbumStatus ? <AddAlbumForm setalbumList={setalbumList}/> : <></>}
+
                     <div className="flex flex_space_between album_imgae_pad album_head">
                         <h2 className="album_title">Your albums</h2>
 
-                        <button className="add_btn">Add Album</button>
+                        <button className={addAlbumStatus ? "clear_btn" : "add_btn"} onClick={() => setAddAlbumStatus(!addAlbumStatus)}>{addAlbumStatus ? "Close" : "Add Album"} 
+                        </button>
                     </div>
                     <div className="album_content">
 
