@@ -1,0 +1,25 @@
+/* Navbar Styles */
+.navbar {
+    padding: 15px 25px;
+    background-color: var(--navbarBgColor);
+}
+
+.navbar_title {
+    align-items: center;
+}
+
+.navbar_title_name {
+    font-size: 1.5rem;
+}
+
+/* Main Content Styles */
+.photo_main_content_div {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    padding: 1rem 2rem;
+}
+
+.album_title {
+    font-size: 1.8xrem;
+}

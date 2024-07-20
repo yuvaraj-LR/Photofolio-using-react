@@ -1,9 +1,10 @@
 import './App.css';
+import Photofolio from './components/Photofolio';
 
 function App() {
   return (
     <div className="App">
-      <h1>Photofolio</h1>
+      <Photofolio />      
     </div>
   );
 }
