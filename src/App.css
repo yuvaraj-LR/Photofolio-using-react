@@ -21,5 +21,49 @@
 }
 
 .album_title {
-    font-size: 1.8xrem;
+    font-size: 1.8rem;
+}
+
+.album_imgae_pad {
+    margin: 0.5rem 0;
+}
+
+/* Album Box Styles */
+.album_box {
+    border: 5px solid var(--album-box-color);
+    border-radius: 10px 10px 0 0 ;
+    max-width: 200px;
+    width: 100%;
+    margin: 1rem;
+}
+
+.album_box:hover {
+    color: blue;
+    border-color: blue;
+}
+
+.album_image_bg {
+    min-height: 100px;
+}
+
+.album_name_para {
+    width: 100%;
+    text-align: center;
+    background: var(--album-box-color);
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.fa-images {
+    color: var(--album-img-color);
+}
+
+/* Empty Component Style */
+.error_display {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--error-para-text);
+    margin: 3rem 0;
+    padding: 3rem;
+    border: 1px solid #333;
 }

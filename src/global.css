@@ -4,6 +4,9 @@
   --navbarBgColor : antiquewhite;
   --add-btn-color : blue;
   --add-btn-color-hover: #c8d2ff;
+  --album-box-color: #ccc;
+  --album-img-color: #666;
+  --error-para-text: #333;
 }
 
 * {
@@ -146,4 +149,8 @@ button {
 
 .pointer {
   cursor: pointer;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
