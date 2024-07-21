@@ -1,6 +1,6 @@
 import {useEffect, useReducer, useState} from "react";
 import { db } from "../fireBaseInit";
-import { collection, onSnapshot } from "firebase/firestore"; 
+import { collection, doc, onSnapshot } from "firebase/firestore"; 
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,11 +9,12 @@ import AlbumList from "./AlbumList";
 import Navbar from "./Navbar";
 import EmptyBox from "./EmptyBox";
 import AddAlbumForm from "./AddAlbumForm";
+import ImageList from "./ImageList";
 
 function photofolioReducer(state, action) {
 
     const {payload} = action;
-    console.log(payload, "payloadd....");
+    console.log(JSON.stringify(payload), "payloadd....");
 
     switch (action.type) {
         case "GET_ALBUM":
@@ -35,8 +36,9 @@ export default function Photofolio() {
     const [addAlbumStatus, setAddAlbumStatus] = useState(false);
     const [addImageStatus, setAddImageStatus] = useState(false);
     const [albumDisplayStatus, setAlbumDisplayStatus] = useState(false);
+    const [albumName, setAlbumName] = useState("Name");
 
-    const albumName = "test"
+    const [imageList, setImageList] = useState([]);
 
     useEffect(() => {
         const unSub = onSnapshot(collection(db, "Photofolio"), (snapShot) => {
@@ -55,6 +57,14 @@ export default function Photofolio() {
 
     const handleImageClick = (id) => {
         setAlbumDisplayStatus(!albumDisplayStatus);
+
+        const albumDetails = onSnapshot(doc(db, "Photofolio", id), (doc) => {
+            const albumDetail = {...doc.data()};
+            setAlbumName(albumDetail.name);
+
+            const payload = albumDetail.photo;
+            setImageList(payload);
+        });
     }
 
     return (
@@ -73,7 +83,6 @@ export default function Photofolio() {
                         </button>
                     </div>
                     <div className="album_content">
-
                         {albumList.length > 0 ? <AlbumList albumList={albumList} handleImageClick={handleImageClick} /> : <EmptyBox text="No Album Found. Please Add To View." />}
                     </div>
                 </div>
@@ -95,7 +104,9 @@ export default function Photofolio() {
                     </div>
 
                     {/* 3. div for imagelist pass excat data. */}
-
+                    <div>
+                        <ImageList imageList={imageList}/>
+                    </div>
                 </div>
             </div>
         </>
