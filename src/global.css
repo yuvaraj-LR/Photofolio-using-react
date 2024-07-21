@@ -72,6 +72,11 @@ button {
   color: #fff;
 }
 
+.back_button {
+  height: auto;
+  box-shadow: none;
+}
+
 /* Default style class */
 .lighter {
   font-weight: 200;

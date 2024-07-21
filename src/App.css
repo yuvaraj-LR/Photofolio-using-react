@@ -91,3 +91,18 @@
     font-size: 1.3rem;
     padding: 1.2rem 5rem;
 }
+
+/* Image Container Styles  */
+
+.back_button {
+    width: 75px;
+    margin-top: 5px;
+}
+
+.fa-magnifying-glass {
+    font-size: 1.5rem;
+}
+
+.clear_absolute_btn_imgurl {
+    top: 7rem;
+}
