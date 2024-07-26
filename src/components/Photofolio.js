@@ -1,8 +1,8 @@
 import {useEffect, useReducer, useState} from "react";
 import { db } from "../fireBaseInit";
-import { collection, doc, onSnapshot } from "firebase/firestore"; 
+import { addDoc, collection, doc, onSnapshot } from "firebase/firestore"; 
 
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import AlbumList from "./AlbumList";
@@ -14,7 +14,6 @@ import ImageList from "./ImageList";
 function photofolioReducer(state, action) {
 
     const {payload} = action;
-    console.log(JSON.stringify(payload), "payloadd....");
 
     switch (action.type) {
         case "GET_ALBUM":
@@ -67,6 +66,21 @@ export default function Photofolio() {
         });
     }
 
+    const handleAddAlbum = async (albumName) => {
+        const data = {
+            name: albumName
+        }
+
+        const albumListRef = collection(db, "Photofolio");
+        const docRef = await addDoc(albumListRef, data);
+
+        toast.success("New album has been added successfully!!!");
+    }
+
+    const handleAddImageToAnAlbum = (id, imageName, imageUrl) => {
+
+    }
+
     return (
         <>
             <Navbar />
@@ -74,7 +88,7 @@ export default function Photofolio() {
             <ToastContainer limit={3} theme="dark" />
             <div className="photo_main_content_div">
                 <div className={!albumDisplayStatus ? "album_details" : "hidden"}>
-                    {addAlbumStatus ? <AddAlbumForm isAlbum={true} dispatch={dispatch} /> : <></>}
+                    {addAlbumStatus ? <AddAlbumForm isAlbum={true} dispatch={dispatch} handleAddAlbum={handleAddAlbum}/> : <></>}
 
                     <div className="flex flex_space_between album_imgae_pad album_head">
                         <h2 className="album_title">Your albums</h2>

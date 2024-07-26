@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 export default function AddAlbumForm(props) {
 
-    const {isAlbum, dispatch} = props;
+    const {isAlbum, dispatch, handleAddAlbum} = props;
 
     const albumNameInput = useRef(null);
     const imageTitleInput = useRef(null);
@@ -13,7 +13,6 @@ export default function AddAlbumForm(props) {
         e.preventDefault();
 
         if(albumNameInput.current.value != "") {
-            toast("Album Added Successfully.")
             dispatch({type: "ADD", albumName: {name: albumNameInput.current.value}})
         }
         albumNameInput.current.value = "";
@@ -22,7 +21,6 @@ export default function AddAlbumForm(props) {
 
     function handleImageSubmit(e) {
         e.preventDefault();
-
     }
 
     useEffect(() => {
@@ -40,7 +38,7 @@ export default function AddAlbumForm(props) {
                         <input placeholder="Album Name" className="create_album_input" ref={albumNameInput} value={albumNameInput.value}/>
                         
                         <button className="clear_btn clear_absolute_btn" onClick={() => {albumNameInput.current.value = ""}}>Clear</button>
-                        <button className="flex flex_center create_btn">Create</button>
+                        <button className="flex flex_center create_btn" onClick={() => handleAddAlbum(albumNameInput.current.value)}>Create</button>
                     </form>
                 : 
                     <form onSubmit={(e) => handleImageSubmit(e)} className="relative">
