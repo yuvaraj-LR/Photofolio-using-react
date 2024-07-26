@@ -99,7 +99,7 @@ export default function Photofolio() {
                         </div>
                         <div className="flex flex_center flex_gap_10">
                             <button className="back_button"><i className="fa-solid fa-magnifying-glass"></i></button>
-                            <button className={addImageStatus ? "clear_btn" : "add_btn"} onClick={() => setAddImageStatus(!addImageStatus)}>{addImageStatus ? "Close" : "Add Album"}</button>
+                            <button className={addImageStatus ? "clear_btn" : "add_btn"} onClick={() => setAddImageStatus(!addImageStatus)}>{addImageStatus ? "Close" : "Add Image"}</button>
                         </div>
                     </div>
 

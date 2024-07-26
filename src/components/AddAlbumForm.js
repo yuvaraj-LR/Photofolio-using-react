@@ -25,11 +25,6 @@ export default function AddAlbumForm(props) {
 
     }
 
-    function handleClear(input) {
-        console.log(input, "inputtt..");
-        input.current.value = "";
-    }
-
     useEffect(() => {
         albumNameInput?.current?.focus();
     }, [])
