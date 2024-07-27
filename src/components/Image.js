@@ -11,7 +11,14 @@ export default function Image(props) {
                 <p className="bold capitalize album_name_para image_div_title">{title}</p>
 
             </div>
-            <button className="del_btn" onClick={() => handleDeleteImage(index)}>Delete</button>
+
+            <div className="flex button_actions">
+                <button className="del_btn" onClick={() => handleDeleteImage(index)}>Delete</button>
+                <a href={imgSrc} className="w-100" download>
+                    <button className="w-100 down_btn">Download</button>
+                </a>
+            </div>
+
         </div>
     );
 }

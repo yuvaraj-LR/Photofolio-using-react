@@ -153,6 +153,12 @@
     border-radius: 0 0 5px 5px;
 }
 
-.del_btn:hover {
+.del_btn:hover, .down_btn:hover {
     transform: scale(1.019);
+}
+
+.down_btn {
+    background-color: green;
+    color: white;
+    border-radius: 0 0 5px 5px;
 }
