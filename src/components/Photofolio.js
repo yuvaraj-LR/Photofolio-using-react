@@ -94,6 +94,20 @@ export default function Photofolio() {
         toast.success("New Image has been added successfully!!!");
     }
 
+    const handleDeleteImage = async(index) => {
+        const newImageList = imageList.filter((_, i) => i !== index);
+
+        const data = {
+            name: albumName,
+            photo: newImageList
+        }
+
+        const albumListRef = collection(db, "Photofolio");
+        await setDoc(doc(albumListRef, albumId), data);
+
+        toast.success("Image has been deleted successfully!!!");
+    }
+
     return (
         <>
             <Navbar />
@@ -132,7 +146,7 @@ export default function Photofolio() {
 
                     {/* 3. div for imagelist pass excat data. */}
                     <div>
-                        {imageList.length > 0 ? <ImageList imageList={imageList}/> :  <EmptyBox text="No images for this album." />}
+                        {imageList.length > 0 ? <ImageList imageList={imageList} handleDeleteImage={handleDeleteImage}/> :  <EmptyBox text="No images for this album." />}
                     </div>
                 </div>
             </div>

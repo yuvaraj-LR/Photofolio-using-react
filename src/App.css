@@ -110,6 +110,11 @@
 
 /* Image Styles */
 
+.image_wrapper {
+    gap: 0;
+    margin: 1rem 0;
+}
+
 .image_list_container {
     margin: 2rem;
     justify-content: space-evenly;
@@ -119,9 +124,8 @@
     justify-content: space-around;
     text-align: center;
     border: 0.3125rem solid var(--album-box-color);
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
     transition: 0.2s all ease-in-out;
-    margin: 1rem 0;
 }
 
 .image_container:hover {
@@ -141,4 +145,14 @@
 .image_div_title {
     background-color: var(--album-box-color);
     padding: 1rem 0;
+}
+
+.del_btn {
+    background-color: red;
+    color: white;
+    border-radius: 0 0 5px 5px;
+}
+
+.del_btn:hover {
+    transform: scale(1.019);
 }
