@@ -3,7 +3,9 @@ import { toast } from "react-toastify";
 
 export default function AddAlbumForm(props) {
 
-    const {isAlbum, dispatch, handleAddAlbum} = props;
+    const {isAlbum, dispatch, handleAddAlbum, imageList, handleAddImageToAnAlbum} = props;
+
+    console.log(imageList, "imageListimageList");
 
     const albumNameInput = useRef(null);
     const imageTitleInput = useRef(null);
@@ -48,6 +50,8 @@ export default function AddAlbumForm(props) {
                         <button className="clear_btn clear_absolute_btn" onClick={() => {imageTitleInput.current.value = ""}} >Clear</button>
                         
                         <button className="clear_btn clear_absolute_btn clear_absolute_btn_imgurl" onClick={() => {imageUrlInput.current.value = ""}} >Clear</button>
+
+                        <button className="flex flex_center create_btn" onClick={() => handleAddImageToAnAlbum()}>Add</button>
                     </form>
                 }
             </div>  

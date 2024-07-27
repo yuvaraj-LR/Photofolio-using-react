@@ -1,6 +1,6 @@
 import {useEffect, useReducer, useState} from "react";
 import { db } from "../fireBaseInit";
-import { addDoc, collection, doc, onSnapshot } from "firebase/firestore"; 
+import { addDoc, collection, doc, onSnapshot, setDoc } from "firebase/firestore"; 
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -38,6 +38,7 @@ export default function Photofolio() {
     const [albumName, setAlbumName] = useState("Name");
 
     const [imageList, setImageList] = useState([]);
+    console.log(imageList, "length...");
 
     useEffect(() => {
         const unSub = onSnapshot(collection(db, "Photofolio"), (snapShot) => {
@@ -74,11 +75,21 @@ export default function Photofolio() {
         const albumListRef = collection(db, "Photofolio");
         const docRef = await addDoc(albumListRef, data);
 
+        setAddAlbumStatus(!addAlbumStatus);
+
         toast.success("New album has been added successfully!!!");
     }
 
-    const handleAddImageToAnAlbum = (id, imageName, imageUrl) => {
+    const handleAddImageToAnAlbum = async(id, photoData) => {
+        const data = {
+            name: albumName,
+            photo: photoData
+        }
 
+        const albumListRef = collection(db, "Photofolio");
+        await setDoc(doc(albumListRef, id), data);
+
+        toast.success("New Image has been added successfully!!!");
     }
 
     return (
@@ -103,7 +114,7 @@ export default function Photofolio() {
                 
                 <div className={albumDisplayStatus ? "album_imgae_pad image_details" : "hidden"}>
                     {/* 1. Add Image Form*/}
-                    {addImageStatus ? <AddAlbumForm isAlbum={false} dispatch={dispatch} /> : <></>}
+                    {addImageStatus ? <AddAlbumForm isAlbum={false} dispatch={dispatch} imageList={imageList} handleAddImageToAnAlbum={handleAddImageToAnAlbum} /> : <></>}
 
                     {/* 2. div with back button, title, search, add-image button. */}
                     <div className="flex flex_space_between w-100 image_list_head">
@@ -119,7 +130,7 @@ export default function Photofolio() {
 
                     {/* 3. div for imagelist pass excat data. */}
                     <div>
-                        <ImageList imageList={imageList}/>
+                        {imageList ? <ImageList imageList={imageList}/> :  <EmptyBox text="No images for this album." />}
                     </div>
                 </div>
             </div>
