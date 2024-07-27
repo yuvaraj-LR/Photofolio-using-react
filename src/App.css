@@ -121,6 +121,7 @@
     border: 0.3125rem solid var(--album-box-color);
     border-radius: 5px;
     transition: 0.2s all ease-in-out;
+    margin: 1rem 0;
 }
 
 .image_container:hover {

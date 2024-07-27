@@ -36,9 +36,9 @@ export default function Photofolio() {
     const [addImageStatus, setAddImageStatus] = useState(false);
     const [albumDisplayStatus, setAlbumDisplayStatus] = useState(false);
     const [albumName, setAlbumName] = useState("Name");
-
+    const [albumId, setAlbumId] = useState("id");
+    
     const [imageList, setImageList] = useState([]);
-    console.log(imageList, "length...");
 
     useEffect(() => {
         const unSub = onSnapshot(collection(db, "Photofolio"), (snapShot) => {
@@ -57,38 +57,40 @@ export default function Photofolio() {
 
     const handleImageClick = (id) => {
         setAlbumDisplayStatus(!albumDisplayStatus);
+        setAlbumId(id);
 
         const albumDetails = onSnapshot(doc(db, "Photofolio", id), (doc) => {
             const albumDetail = {...doc.data()};
             setAlbumName(albumDetail.name);
 
-            const payload = albumDetail.photo;
+            const payload = albumDetail.photo || [];
             setImageList(payload);
         });
     }
 
     const handleAddAlbum = async (albumName) => {
         const data = {
-            name: albumName
+            name: albumName,
+            photo: []
         }
 
         const albumListRef = collection(db, "Photofolio");
         const docRef = await addDoc(albumListRef, data);
 
         setAddAlbumStatus(!addAlbumStatus);
-
         toast.success("New album has been added successfully!!!");
     }
 
-    const handleAddImageToAnAlbum = async(id, photoData) => {
+    const handleAddImageToAnAlbum = async(photoData) => {
         const data = {
             name: albumName,
-            photo: photoData
+            photo: [...imageList, photoData]
         }
 
         const albumListRef = collection(db, "Photofolio");
-        await setDoc(doc(albumListRef, id), data);
+        await setDoc(doc(albumListRef, albumId), data);
 
+        setAddImageStatus(!addImageStatus);
         toast.success("New Image has been added successfully!!!");
     }
 
@@ -130,7 +132,7 @@ export default function Photofolio() {
 
                     {/* 3. div for imagelist pass excat data. */}
                     <div>
-                        {imageList ? <ImageList imageList={imageList}/> :  <EmptyBox text="No images for this album." />}
+                        {imageList.length > 0 ? <ImageList imageList={imageList}/> :  <EmptyBox text="No images for this album." />}
                     </div>
                 </div>
             </div>
